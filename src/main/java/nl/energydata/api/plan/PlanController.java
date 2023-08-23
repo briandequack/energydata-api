@@ -15,7 +15,7 @@ import nl.energydata.library.datacontainer.DurationCategory;
 
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = {"http://localhost:3000", "https://enerwijs.nl", "https://www.enerwijs.nl"})
 @RequestMapping("/api/v1/plan")
 public class PlanController {
 	

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = {"http://localhost:3000", "https://enerwijs.nl", "https://www.enerwijs.nl"})
 @RequestMapping("/api/v1/address")
 public class DistributorAndAddressController {
 	
