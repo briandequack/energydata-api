@@ -16,10 +16,10 @@ import nl.energydata.library.datacontainer.DurationCategory;
 public class Plan {
 	
 	// REQUEST DATA
-	private Integer ELECTRICTY_USAGE_ON_PEAK_IN_KWH;
-	private Integer ELECTRICTY_USAGE_OFF_PEAK_IN_KWH;
-	private Integer ELECTRICTY_PRODUCTION_IN_KWH;
-	private Integer GAS_USAGE_IN_M3;
+	private BigDecimal ELECTRICTY_USAGE_ON_PEAK_IN_KWH;
+	private BigDecimal ELECTRICTY_USAGE_OFF_PEAK_IN_KWH;
+	private BigDecimal ELECTRICTY_PRODUCTION_IN_KWH;
+	private BigDecimal GAS_USAGE_IN_M3;
 	private String DISTRIBUTOR;
 	
 	// PLAN DATA
@@ -71,6 +71,7 @@ public class Plan {
 	
 	
 	// ELEC TOTAL
+	private BigDecimal elecTotalMonthlyInclAll = BigDecimal.ZERO;
 	private BigDecimal elecTotalYearlyCostsInclAll = BigDecimal.ZERO;
 
 	

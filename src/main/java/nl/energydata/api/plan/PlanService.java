@@ -35,9 +35,11 @@ public class PlanService {
     	Optional<Integer> ELECTRICTY_PRODUCTION_IN_KWH = Optional.ofNullable(planRequest.getELECTRICTY_PRODUCTION_IN_KWH());
     	Optional<Integer> GAS_USAGE_IN_M3 = Optional.ofNullable(planRequest.getGAS_USAGE_IN_M3());
     	Optional<String> DISTRIBUTOR = Optional.ofNullable(planRequest.getDISTRIBUTOR());
+    	Integer PAGE_NUMBER = planRequest.getPAGE_NUMBER();
+    	Integer PAGE_SIZE = planRequest.getPAGE_SIZE();
     	
     	
-    	Map<DurationCategory, List<EnergyUtilityDataContainer>> result = energyUtilityDataContainerService.getByUtilityRates(ELECTRICTY_USAGE_ON_PEAK_IN_KWH,ELECTRICTY_USAGE_OFF_PEAK_IN_KWH,ELECTRICTY_PRODUCTION_IN_KWH,GAS_USAGE_IN_M3,0,10);
+    	Map<DurationCategory, List<EnergyUtilityDataContainer>> result = energyUtilityDataContainerService.getByUtilityRates(ELECTRICTY_USAGE_ON_PEAK_IN_KWH,ELECTRICTY_USAGE_OFF_PEAK_IN_KWH,ELECTRICTY_PRODUCTION_IN_KWH,GAS_USAGE_IN_M3,PAGE_NUMBER,PAGE_SIZE);
     	 Map<DurationCategory, List<Plan>> plansByDuration = new HashMap<>();
     	
     	 for (DurationCategory durationCategory : result.keySet()) {
@@ -140,8 +142,9 @@ public class PlanService {
     	            	}
     	            	onPeakNonCappedCosts = onPeakNonCappedUnits.multiply(plan.getOnPeakElecRateInclAll());
     	            	
+    	            	
     	            	onPeakTotalCosts = onPeakCappedCosts.add(onPeakNonCappedCosts);
-    	            	  	
+    	            	
     	                plan.setOnPeakElecYearlyCostsInclAll(onPeakTotalCosts);
     	                
     	                plan.addElecTotalYearlyCostsInclAll(onPeakTotalCosts);
@@ -174,7 +177,7 @@ public class PlanService {
     	            	
     	            	offPeakTotalCosts = offPeakCappedCosts.add(offPeakNonCappedCosts);
     	            	  	
-    	            
+    	            	plan.setELECTRICTY_USAGE_OFF_PEAK_IN_KWH(usageOffPeak);
     	                
     	                plan.setOffPeakElecYearlyCostsInclAll(offPeakTotalCosts);
     	                
@@ -205,6 +208,7 @@ public class PlanService {
     	            	
     	            	
     	            	plan.addTotalYearlyCostsInclAll(plan.getElecTotalYearlyCostsInclAll());
+    	            	plan.setElecTotalMonthlyInclAll(energyTaxService.numYearlyToMonthly(plan.getElecTotalYearlyCostsInclAll()));
     	            	
     	            }
 
@@ -234,7 +238,7 @@ public class PlanService {
     	            	
     	            	gasTotalCosts = gasCappedCosts.add(gasNonCappedCosts);
     	            	  	
-    	            
+    	            	plan.setGAS_USAGE_IN_M3(usageGas);
     	                
     	                plan.setGasYearlyCostsInclAll(gasTotalCosts);
     	                

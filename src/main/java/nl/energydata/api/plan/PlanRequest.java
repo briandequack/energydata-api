@@ -26,4 +26,10 @@ public class PlanRequest {
     @JsonProperty("DISTRIBUTOR")
     private String DISTRIBUTOR;
     
+    @JsonProperty("PAGE_NUMBER")
+    private Integer PAGE_NUMBER;
+    
+    @JsonProperty("PAGE_SIZE")
+    private Integer PAGE_SIZE;
+    
 }
