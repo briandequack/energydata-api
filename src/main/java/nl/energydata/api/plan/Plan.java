@@ -72,7 +72,7 @@ public class Plan {
 	
 	// ELEC TOTAL
 	private BigDecimal elecTotalMonthlyInclAll = BigDecimal.ZERO;
-	private BigDecimal elecTotalYearlyCostsInclAll = BigDecimal.ZERO;
+	private BigDecimal elecTotalYearlyCostsInclAll = null;
 
 	
 
@@ -103,10 +103,13 @@ public class Plan {
 	
 	
 	// ELEC TOTAL
-	private BigDecimal gasTotalYearlyCostsInclAll = BigDecimal.ZERO;
+	private BigDecimal gasTotalYearlyCostsInclAll = null;
 	
 
 	public void addElecTotalYearlyCostsInclAll(BigDecimal num) {
+		if(this.elecTotalYearlyCostsInclAll == null) {
+			this.elecTotalYearlyCostsInclAll = BigDecimal.ZERO;
+		}
 		this.elecTotalYearlyCostsInclAll = elecTotalYearlyCostsInclAll.add(num);
 	}
 	
@@ -116,6 +119,9 @@ public class Plan {
 	
 	
 	public void addGasTotalYearlyCostsInclAll(BigDecimal num) {
+		if(this.gasTotalYearlyCostsInclAll == null) {
+			this.gasTotalYearlyCostsInclAll = BigDecimal.ZERO;
+		}
 		this.gasTotalYearlyCostsInclAll = gasTotalYearlyCostsInclAll.add(num);
 	}
 	

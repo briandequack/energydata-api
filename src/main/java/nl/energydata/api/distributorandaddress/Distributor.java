@@ -8,5 +8,6 @@ import lombok.Setter;
 public class Distributor implements IResponse{
 
 	private String distributorName;
+	private String distributorEan;
 	
 }
